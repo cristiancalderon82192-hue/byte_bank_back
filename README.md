@@ -2,7 +2,7 @@
 
 API REST completa para gestión de sistema bancario construida con FastAPI, SQLAlchemy y MySQL, diseñada para ser consumida desde aplicaciones Blazor.
 
-## 📋 Tabla de Contenidos
+## Tabla de Contenidos
 
 - [Características](#características)
 - [Modelo de Datos](#modelo-de-datos)
@@ -30,7 +30,7 @@ API REST completa para gestión de sistema bancario construida con FastAPI, SQLA
 - ✅ Pruebas unitarias con pytest
 - ✅ Arquitectura modular y escalable
 
-## 🗄️ Modelo de Datos
+## Modelo de Datos
 
 ### Tablas Maestras (Catálogos)
 - **tipocuenta**: Tipos de cuenta (Ahorro, Corriente, etc.)
@@ -189,12 +189,12 @@ El servidor estará disponible en: `http://localhost:8000`
 ```
 byte_bank_back/
 │
-├── app/
+├── app/                           # 📦 Aplicación principal
 │   ├── __init__.py
-│   ├── main.py                    # Punto de entrada FastAPI
-│   ├── database.py                # Configuración de BD
+│   ├── main.py                    # 🚀 Punto de entrada FastAPI
+│   ├── database.py                # 🔌 Configuración de BD
 │   │
-│   ├── models/                    # Modelos SQLAlchemy
+│   ├── models/                    # 🗄️ Modelos SQLAlchemy (Tablas)
 │   │   ├── __init__.py
 │   │   ├── ciudad.py
 │   │   ├── tipo_cuenta.py
@@ -208,7 +208,7 @@ byte_bank_back/
 │   │   ├── movimiento.py
 │   │   └── prestamo.py
 │   │
-│   ├── schemas/                   # Esquemas Pydantic
+│   ├── schemas/                   # ✅ Esquemas Pydantic (Validación)
 │   │   ├── __init__.py
 │   │   ├── ciudad.py
 │   │   ├── tipo_cuenta.py
@@ -222,7 +222,7 @@ byte_bank_back/
 │   │   ├── movimiento.py
 │   │   └── prestamo.py
 │   │
-│   ├── routers/                   # Endpoints REST
+│   ├── routers/                   # 🛣️ Endpoints REST (API)
 │   │   ├── __init__.py
 │   │   ├── ciudades.py
 │   │   ├── tipos.py              # Endpoints para tablas maestras
@@ -233,7 +233,7 @@ byte_bank_back/
 │   │   ├── movimientos.py
 │   │   └── prestamos.py
 │   │
-│   ├── crud/                      # Operaciones CRUD
+│   ├── crud/                      # 🔧 Operaciones CRUD (Lógica de BD)
 │   │   ├── __init__.py
 │   │   ├── ciudad.py
 │   │   ├── tipo_cuenta.py
@@ -243,29 +243,35 @@ byte_bank_back/
 │   │   ├── movimiento.py
 │   │   └── prestamo.py
 │   │
-│   └── utils/                     # Utilidades
+│   └── utils/                     # 🛠️ Utilidades
 │       ├── __init__.py
 │       └── security.py
 │
-├── tests/                         # Pruebas unitarias
+├── tests/                         # 🧪 Pruebas unitarias
 │   ├── __init__.py
 │   ├── test_cuentahabientes.py
 │   ├── test_cuentas.py
 │   ├── test_movimientos.py
 │   └── test_prestamos.py
 │
-├── database/                      # Scripts SQL
-│   └── schema.sql                # Esquema de BD
+├── database/                      # 💾 Scripts SQL
+│   └── schema.sql                # Esquema completo de BD
 │
-├── alembic/                       # Migraciones
-│   ├── versions/
-│   └── env.py
+├── alembic/                       # 🔄 Migraciones (Opcional)
+│   ├── versions/                 # Versiones de migraciones
+│   ├── env.py                    # Configuración de Alembic
+│   ├── script.py.mako
+│   └── README
 │
-├── .env                          # Variables de entorno
-├── .gitignore
-├── requirements.txt
-├── alembic.ini
-└── README.md
+├── venv/                          # 🐍 Entorno virtual Python
+│
+├── .env                          # 🔐 Variables de entorno (NO versionar)
+├── .gitignore                    # 📋 Archivos ignorados por Git
+├── requirements.txt              # 📦 Dependencias Python
+├── alembic.ini                   # ⚙️ Config Alembic (solo si se usa)
+├── init_db.py                    # 🎲 Script para poblar BD con datos de prueba
+├── verify_db.py                  # 🔍 Script para verificar BD existente
+└── README.md                     # 📖 Este archivo
 ```
 
 ## 🔌 Endpoints
@@ -477,13 +483,6 @@ La API puede desplegarse en:
 | `DEBUG` | Modo debug | True | ❌ |
 | `SECRET_KEY` | Clave para JWT | - | ✅ |
 
-## 🤝 Contribuir
-
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
 
 ## 📄 Licencia
 
@@ -493,18 +492,8 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 
 - **Cristian Arboleda** - *Desarrollo inicial* - [cristiancalderon82192-hue](https://github.com/cristiancalderon82192-hue)
 
-## 📞 Contacto
-
-- Email: tu-email@ejemplo.com
-- LinkedIn: [Tu Perfil](https://linkedin.com/in/tu-perfil)
-- GitHub: [@tu-usuario](https://github.com/tu-usuario)
-
 ## 🙏 Agradecimientos
 
 - FastAPI Documentation
 - SQLAlchemy Documentation
 - Comunidad de Python
-
----
-
-⭐️ Si este proyecto te fue útil, dale una estrella en GitHub!
