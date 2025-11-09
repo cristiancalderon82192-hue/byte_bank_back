@@ -1,0 +1,9 @@
+alembic
+fastapi
+httpx
+pydantic[dotenv]
+pymysql
+pytest
+python-dotenv
+sqlalchemy
+uvicorn
