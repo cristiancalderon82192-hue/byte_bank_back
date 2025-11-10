@@ -120,15 +120,57 @@ pip install -r requirements.txt
 
 ### 1. Crear base de datos MySQL
 
+**Opción A: Ejecutar script SQL completo** (Recomendado)
+
+Ejecuta el archivo `database/schema.sql` que contiene la estructura completa:
+
+```bash
+mysql -u root -p < database/schema.sql
+```
+
+O desde MySQL Workbench/DBeaver, abre y ejecuta el archivo `database/schema.sql`
+
+**Opción B: Crear solo la base de datos**
+
 ```sql
 DROP DATABASE IF EXISTS BancoDB;
 CREATE DATABASE BancoDB;
 USE BancoDB;
 ```
 
-O ejecutar el script completo proporcionado en `database/schema.sql`
+### 2. Verificar la base de datos
 
-### 2. Configurar variables de entorno
+Antes de continuar, verifica que la base de datos esté correctamente configurada:
+
+```bash
+python verify_db.py
+```
+
+Este script verificará:
+- ✅ Conexión a la base de datos
+- ✅ Existencia de las 11 tablas requeridas
+- ✅ Compatibilidad con los modelos SQLAlchemy
+- ✅ Cantidad de registros en cada tabla
+
+### 3. Poblar con datos de prueba (Opcional)
+
+Si la base de datos está vacía, puedes poblarla con datos de ejemplo:
+
+```bash
+python init_db.py
+```
+
+Este script insertará:
+- 5 ciudades
+- 5 tipos de documento
+- 4 tipos de cuenta
+- 6 tipos de movimiento
+- 4 tipos de sucursal
+- 3 sucursales
+- 3 cuentahabientes
+- 3 cuentas con sus titulares
+
+### 4. Configurar variables de entorno
 
 Crea un archivo `.env` en la raíz del proyecto:
 
@@ -152,16 +194,79 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 ```
 
 ### 3. Ejecutar migraciones
+**⚠️ IMPORTANTE: Alembic es OPCIONAL en este proyecto**
+
+#### Opción A: Sin Alembic (Recomendado para comenzar)
+
+Si ya ejecutaste el script SQL (`database/schema.sql`), las tablas ya existen y **NO necesitas Alembic**. Los modelos SQLAlchemy funcionarán directamente con las tablas existentes.
+
+#### Opción B: Con Alembic (Para gestión avanzada de migraciones)
+
+Si prefieres usar Alembic para trackear cambios en la estructura de la BD:
 
 ```bash
-# Inicializar Alembic (solo primera vez)
+# 1. Inicializar Alembic (solo primera vez)
 alembic init alembic
 
-# Crear migración inicial
-alembic revision --autogenerate -m "Initial migration"
+# 2. Si las tablas YA EXISTEN, marca como aplicadas sin ejecutar
+alembic stamp head
 
-# Aplicar migraciones
+# 3. Para futuros cambios en la estructura
+alembic revision --autogenerate -m "Descripción del cambio"
 alembic upgrade head
+```
+
+**Cuándo usar Alembic:**
+- ✅ Cuando trabajas en equipo y necesitas sincronizar cambios de BD
+- ✅ Cuando quieres historial de cambios en la estructura
+- ✅ Cuando necesitas revertir cambios fácilmente
+- ❌ NO es necesario si solo usas el script SQL y no planeas modificar la estructura
+
+### 4. Verificar instalación
+
+## 🎯 Uso
+
+### Scripts de utilidad
+
+#### 🔍 Verificar base de datos
+
+Antes de iniciar la API, verifica que todo esté configurado correctamente:
+
+```bash
+python verify_db.py
+```
+
+**Salida esperada:**
+```
+🏦 ByteBank - Verificación de Base de Datos
+==================================================
+
+🔍 Verificando conexión a base de datos...
+✅ Conexión exitosa a la base de datos
+
+📊 Tablas en la base de datos:
+==================================================
+  ✅ ciudad               - 5 registros
+  ✅ tipocuenta          - 4 registros
+  ✅ tipodocumento       - 5 registros
+  ✅ tipomovimiento      - 6 registros
+  ✅ tiposucursal        - 4 registros
+  ✅ cuentahabiente      - 3 registros
+  ✅ sucursal            - 3 registros
+  ✅ cuenta              - 3 registros
+  ✅ titular             - 3 registros
+  ✅ movimiento          - 0 registros
+  ✅ prestamo            - 0 registros
+
+🎉 Todas las tablas existen correctamente!
+```
+
+#### 🎲 Poblar base de datos
+
+Si necesitas datos de prueba:
+
+```bash
+python init_db.py
 ```
 
 ## 🎯 Uso
@@ -271,6 +376,7 @@ byte_bank_back/
 ├── alembic.ini                   # ⚙️ Config Alembic (solo si se usa)
 ├── init_db.py                    # 🎲 Script para poblar BD con datos de prueba
 ├── verify_db.py                  # 🔍 Script para verificar BD existente
+├── test_schemas.py               # 🔍 Script para verificar Schemas existentes
 └── README.md                     # 📖 Este archivo
 ```
 
