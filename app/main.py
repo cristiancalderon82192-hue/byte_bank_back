@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 
 # Importar routers
-from app.routers import ciudades, cuentahabientes, cuentas
+from app.routers import ciudades, cuentahabientes, cuentas, tipos, sucursales, movimientos, prestamos, titulares
 
 # Cargar variables de entorno
 load_dotenv()

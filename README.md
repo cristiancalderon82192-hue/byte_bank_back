@@ -1,4 +1,4 @@
-# 🏦 ByteBank API - FastAPI + MySQL
+# ByteBank API - FastAPI + MySQL
 
 API REST completa para gestión de sistema bancario construida con FastAPI, SQLAlchemy y MySQL, diseñada para ser consumida desde aplicaciones Blazor.
 
@@ -16,19 +16,19 @@ API REST completa para gestión de sistema bancario construida con FastAPI, SQLA
 - [Pruebas](#pruebas)
 - [Despliegue](#despliegue)
 
-## ✨ Características
+## Características
 
-- ✅ API REST completa con operaciones CRUD
-- ✅ Gestión de cuentahabientes, cuentas, sucursales y préstamos
-- ✅ Sistema de movimientos bancarios (depósitos, retiros, transferencias)
-- ✅ Soporte para múltiples titulares por cuenta
-- ✅ Control de sobregiros autorizados y no autorizados
-- ✅ Documentación automática con Swagger/OpenAPI
-- ✅ Validación de datos con Pydantic
-- ✅ Migraciones de base de datos con Alembic
-- ✅ CORS configurado para Blazor
-- ✅ Pruebas unitarias con pytest
-- ✅ Arquitectura modular y escalable
+- API REST completa con operaciones CRUD
+- Gestión de cuentahabientes, cuentas, sucursales y préstamos
+- Sistema de movimientos bancarios (depósitos, retiros, transferencias)
+- Soporte para múltiples titulares por cuenta
+- Control de sobregiros autorizados y no autorizados
+- Documentación automática con Swagger/OpenAPI
+- Validación de datos con Pydantic
+- Migraciones de base de datos con Alembic
+- CORS configurado para Blazor
+- Pruebas unitarias con pytest
+- Arquitectura modular y escalable
 
 ## Modelo de Datos
 
@@ -50,22 +50,22 @@ API REST completa para gestión de sistema bancario construida con FastAPI, SQLA
 ### Diagrama de Relaciones
 
 ```
-ciudad ──┬─→ cuentahabiente
-         └─→ sucursal
+ciudad → cuentahabiente
+         → sucursal
          
-tipodocumento ─→ cuentahabiente
-tiposucursal ─→ sucursal
-tipocuenta ─→ cuenta
-tipomovimiento ─→ movimiento
+tipodocumento → cuentahabiente
+tiposucursal → sucursal
+tipocuenta → cuenta
+tipomovimiento → movimiento
 
-cuentahabiente ←─→ titular ←─→ cuenta
-                                  │
-                        ┌─────────┼─────────┐
+cuentahabiente ←→ titular ←→ cuenta
+                                  
+                        
                         ↓         ↓         ↓
                    movimiento  prestamo  sucursal
 ```
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 - **Framework**: FastAPI 0.109.0
 - **ORM**: SQLAlchemy 2.0.25
@@ -75,14 +75,14 @@ cuentahabiente ←─→ titular ←─→ cuenta
 - **Testing**: pytest 7.4.4
 - **Servidor**: Uvicorn 0.27.0
 
-## 📦 Requisitos Previos
+## Requisitos Previos
 
 - Python 3.8 o superior
 - MySQL 8.0 o superior
 - pip (gestor de paquetes de Python)
 - Git
 
-## 🚀 Instalación
+## Instalación
 
 ### 1. Clonar el repositorio
 
@@ -116,7 +116,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## ⚙️ Configuración
+## Configuración
 
 ### 1. Crear base de datos MySQL
 
@@ -147,10 +147,10 @@ python verify_db.py
 ```
 
 Este script verificará:
-- ✅ Conexión a la base de datos
-- ✅ Existencia de las 11 tablas requeridas
-- ✅ Compatibilidad con los modelos SQLAlchemy
-- ✅ Cantidad de registros en cada tabla
+- Conexión a la base de datos
+- Existencia de las 11 tablas requeridas
+- Compatibilidad con los modelos SQLAlchemy
+- Cantidad de registros en cada tabla
 
 ### 3. Poblar con datos de prueba (Opcional)
 
@@ -194,7 +194,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 ```
 
 ### 3. Ejecutar migraciones
-**⚠️ IMPORTANTE: Alembic es OPCIONAL en este proyecto**
+** IMPORTANTE: Alembic es OPCIONAL en este proyecto**
 
 #### Opción A: Sin Alembic (Recomendado para comenzar)
 
@@ -217,18 +217,18 @@ alembic upgrade head
 ```
 
 **Cuándo usar Alembic:**
-- ✅ Cuando trabajas en equipo y necesitas sincronizar cambios de BD
-- ✅ Cuando quieres historial de cambios en la estructura
-- ✅ Cuando necesitas revertir cambios fácilmente
-- ❌ NO es necesario si solo usas el script SQL y no planeas modificar la estructura
+- Cuando trabajas en equipo y necesitas sincronizar cambios de BD
+- Cuando quieres historial de cambios en la estructura
+- Cuando necesitas revertir cambios fácilmente
+- NO es necesario si solo usas el script SQL y no planeas modificar la estructura
 
 ### 4. Verificar instalación
 
-## 🎯 Uso
+## Uso
 
 ### Scripts de utilidad
 
-#### 🔍 Verificar base de datos
+#### Verificar base de datos
 
 Antes de iniciar la API, verifica que todo esté configurado correctamente:
 
@@ -238,30 +238,30 @@ python verify_db.py
 
 **Salida esperada:**
 ```
-🏦 ByteBank - Verificación de Base de Datos
+ ByteBank - Verificación de Base de Datos
 ==================================================
 
-🔍 Verificando conexión a base de datos...
-✅ Conexión exitosa a la base de datos
+ Verificando conexión a base de datos...
+ Conexión exitosa a la base de datos
 
-📊 Tablas en la base de datos:
+ Tablas en la base de datos:
 ==================================================
-  ✅ ciudad               - 5 registros
-  ✅ tipocuenta          - 4 registros
-  ✅ tipodocumento       - 5 registros
-  ✅ tipomovimiento      - 6 registros
-  ✅ tiposucursal        - 4 registros
-  ✅ cuentahabiente      - 3 registros
-  ✅ sucursal            - 3 registros
-  ✅ cuenta              - 3 registros
-  ✅ titular             - 3 registros
-  ✅ movimiento          - 0 registros
-  ✅ prestamo            - 0 registros
+   ciudad               - 5 registros
+   tipocuenta          - 4 registros
+   tipodocumento       - 5 registros
+   tipomovimiento      - 6 registros
+   tiposucursal        - 4 registros
+   cuentahabiente      - 3 registros
+   sucursal            - 3 registros
+   cuenta              - 3 registros
+   titular             - 3 registros
+   movimiento          - 0 registros
+   prestamo            - 0 registros
 
-🎉 Todas las tablas existen correctamente!
+ Todas las tablas existen correctamente!
 ```
 
-#### 🎲 Poblar base de datos
+#### Poblar base de datos
 
 Si necesitas datos de prueba:
 
@@ -269,7 +269,7 @@ Si necesitas datos de prueba:
 python init_db.py
 ```
 
-## 🎯 Uso
+## Uso
 
 ### Iniciar el servidor de desarrollo
 
@@ -289,100 +289,100 @@ El servidor estará disponible en: `http://localhost:8000`
 - **ReDoc**: http://localhost:8000/redoc
 - **OpenAPI JSON**: http://localhost:8000/openapi.json
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 byte_bank_back/
-│
-├── app/                           # 📦 Aplicación principal
-│   ├── __init__.py
-│   ├── main.py                    # 🚀 Punto de entrada FastAPI
-│   ├── database.py                # 🔌 Configuración de BD
-│   │
-│   ├── models/                    # 🗄️ Modelos SQLAlchemy (Tablas)
-│   │   ├── __init__.py
-│   │   ├── ciudad.py
-│   │   ├── tipo_cuenta.py
-│   │   ├── tipo_documento.py
-│   │   ├── tipo_movimiento.py
-│   │   ├── tipo_sucursal.py
-│   │   ├── cuentahabiente.py
-│   │   ├── sucursal.py
-│   │   ├── cuenta.py
-│   │   ├── titular.py
-│   │   ├── movimiento.py
-│   │   └── prestamo.py
-│   │
-│   ├── schemas/                   # ✅ Esquemas Pydantic (Validación)
-│   │   ├── __init__.py
-│   │   ├── ciudad.py
-│   │   ├── tipo_cuenta.py
-│   │   ├── tipo_documento.py
-│   │   ├── tipo_movimiento.py
-│   │   ├── tipo_sucursal.py
-│   │   ├── cuentahabiente.py
-│   │   ├── sucursal.py
-│   │   ├── cuenta.py
-│   │   ├── titular.py
-│   │   ├── movimiento.py
-│   │   └── prestamo.py
-│   │
-│   ├── routers/                   # 🛣️ Endpoints REST (API)
-│   │   ├── __init__.py
-│   │   ├── ciudades.py
-│   │   ├── tipos.py              # Endpoints para tablas maestras
-│   │   ├── cuentahabientes.py
-│   │   ├── sucursales.py
-│   │   ├── cuentas.py
-│   │   ├── titulares.py
-│   │   ├── movimientos.py
-│   │   └── prestamos.py
-│   │
-│   ├── crud/                      # 🔧 Operaciones CRUD (Lógica de BD)
-│   │   ├── __init__.py
-│   │   ├── ciudad.py
-│   │   ├── tipo_cuenta.py
-│   │   ├── cuentahabiente.py
-│   │   ├── sucursal.py
-│   │   ├── cuenta.py
-│   │   ├── movimiento.py
-│   │   └── prestamo.py
-│   │
-│   └── utils/                     # 🛠️ Utilidades
-│       ├── __init__.py
-│       └── security.py
-│
-├── tests/                         # 🧪 Pruebas unitarias
-│   ├── __init__.py
-│   ├── test_cuentahabientes.py
-│   ├── test_cuentas.py
-│   ├── test_movimientos.py
-│   └── test_prestamos.py
-│
-├── database/                      # 💾 Scripts SQL
-│   └── schema.sql                # Esquema completo de BD
-│
-├── alembic/                       # 🔄 Migraciones (Opcional)
-│   ├── versions/                 # Versiones de migraciones
-│   ├── env.py                    # Configuración de Alembic
-│   ├── script.py.mako
-│   └── README
-│
-├── venv/                          # 🐍 Entorno virtual Python
-│
-├── .env                          # 🔐 Variables de entorno (NO versionar)
-├── .gitignore                    # 📋 Archivos ignorados por Git
-├── requirements.txt              # 📦 Dependencias Python
-├── alembic.ini                   # ⚙️ Config Alembic (solo si se usa)
-├── init_db.py                    # 🎲 Script para poblar BD con datos de prueba
-├── verify_db.py                  # 🔍 Script para verificar BD existente
-├── test_schemas.py               # 🔍 Script para verificar Schemas existentes
-└── README.md                     # 📖 Este archivo
+
+ app/                           # Aplicación principal
+    __init__.py
+    main.py                    # Punto de entrada FastAPI
+    database.py                # Configuración de BD
+   
+    models/                    # Modelos SQLAlchemy (Tablas)
+       __init__.py
+       ciudad.py
+       tipo_cuenta.py
+       tipo_documento.py
+       tipo_movimiento.py
+       tipo_sucursal.py
+       cuentahabiente.py
+       sucursal.py
+       cuenta.py
+       titular.py
+       movimiento.py
+       prestamo.py
+   
+    schemas/                   # Esquemas Pydantic (Validación)
+       __init__.py
+       ciudad.py
+       tipo_cuenta.py
+       tipo_documento.py
+       tipo_movimiento.py
+       tipo_sucursal.py
+       cuentahabiente.py
+       sucursal.py
+       cuenta.py
+       titular.py
+       movimiento.py
+       prestamo.py
+   
+    routers/                   # Endpoints REST (API)
+       __init__.py
+       ciudades.py
+       tipos.py              # Endpoints para tablas maestras
+       cuentahabientes.py
+       sucursales.py
+       cuentas.py
+       titulares.py
+       movimientos.py
+       prestamos.py
+   
+    crud/                      # Operaciones CRUD (Lógica de BD)
+       __init__.py
+       ciudad.py
+       tipo_cuenta.py
+       cuentahabiente.py
+       sucursal.py
+       cuenta.py
+       movimiento.py
+       prestamo.py
+   
+    utils/                     # Utilidades
+        __init__.py
+        security.py
+
+ tests/                         # Pruebas unitarias
+    __init__.py
+    test_cuentahabientes.py
+    test_cuentas.py
+    test_movimientos.py
+    test_prestamos.py
+
+ database/                      # Scripts SQL
+    schema.sql                # Esquema completo de BD
+
+ alembic/                       # Migraciones (Opcional)
+    versions/                 # Versiones de migraciones
+    env.py                    # Configuración de Alembic
+    script.py.mako
+    README
+
+ venv/                          # Entorno virtual Python
+
+ .env                          # Variables de entorno (NO versionar)
+ .gitignore                    # Archivos ignorados por Git
+ requirements.txt              # Dependencias Python
+ alembic.ini                   # Config Alembic (solo si se usa)
+ init_db.py                    # Script para poblar BD con datos de prueba
+ verify_db.py                  # Script para verificar BD existente
+ test_schemas.py               # Script para verificar Schemas existentes
+ README.md                     # Este archivo
 ```
 
-## 🔌 Endpoints
+## Endpoints
 
-### 📊 Tablas Maestras (Catálogos)
+### Tablas Maestras (Catálogos)
 
 #### Ciudades
 | Método | Endpoint | Descripción |
@@ -429,7 +429,7 @@ byte_bank_back/
 | PUT | `/api/tipos-sucursal/{id}` | Actualizar tipo |
 | DELETE | `/api/tipos-sucursal/{id}` | Eliminar tipo |
 
-### 👥 Cuentahabientes
+### Cuentahabientes
 
 | Método | Endpoint | Descripción |
 |--------|----------|-------------|
@@ -441,7 +441,7 @@ byte_bank_back/
 | DELETE | `/api/cuentahabientes/{id}` | Eliminar cuentahabiente |
 | GET | `/api/cuentahabientes/{id}/cuentas` | Obtener cuentas del cliente |
 
-### 🏢 Sucursales
+### Sucursales
 
 | Método | Endpoint | Descripción |
 |--------|----------|-------------|
@@ -452,7 +452,7 @@ byte_bank_back/
 | PUT | `/api/sucursales/{id}` | Actualizar sucursal |
 | DELETE | `/api/sucursales/{id}` | Eliminar sucursal |
 
-### 💳 Cuentas
+### Cuentas
 
 | Método | Endpoint | Descripción |
 |--------|----------|-------------|
@@ -466,7 +466,7 @@ byte_bank_back/
 | GET | `/api/cuentas/{id}/movimientos` | Obtener movimientos de la cuenta |
 | GET | `/api/cuentas/{id}/saldo` | Consultar saldo actual |
 
-### 🤝 Titulares
+### Titulares
 
 | Método | Endpoint | Descripción |
 |--------|----------|-------------|
@@ -475,7 +475,7 @@ byte_bank_back/
 | GET | `/api/titulares/cuenta/{id_cuenta}` | Titulares de una cuenta |
 | GET | `/api/titulares/cuentahabiente/{id}` | Cuentas de un titular |
 
-### 💸 Movimientos
+### Movimientos
 
 | Método | Endpoint | Descripción |
 |--------|----------|-------------|
@@ -487,7 +487,7 @@ byte_bank_back/
 | POST | `/api/movimientos/retiro` | Registrar retiro |
 | POST | `/api/movimientos/transferencia` | Realizar transferencia |
 
-### 💰 Préstamos
+### Préstamos
 
 | Método | Endpoint | Descripción |
 |--------|----------|-------------|
@@ -500,14 +500,14 @@ byte_bank_back/
 | DELETE | `/api/prestamos/{id}` | Eliminar préstamo |
 | GET | `/api/prestamos/{id}/cuotas` | Calcular plan de cuotas |
 
-### 🔍 Health Check
+### Health Check
 
 | Método | Endpoint | Descripción |
 |--------|----------|-------------|
 | GET | `/` | Estado general de la API |
 | GET | `/health` | Verificar conexión a BD |
 
-## 🧪 Pruebas
+## Pruebas
 
 ### Ejecutar todas las pruebas
 
@@ -531,7 +531,7 @@ pytest tests/test_cuentahabientes.py
 pytest tests/test_movimientos.py -v
 ```
 
-## 🚢 Despliegue
+## Despliegue
 
 ### Docker
 
@@ -565,40 +565,42 @@ La API puede desplegarse en:
 - **Azure App Service**: Microsoft Azure
 - **Google Cloud Run**: Google Cloud Platform
 
-## 🔐 Seguridad
+## Seguridad
 
-- ❌ No versionar el archivo `.env`
-- 🔑 Cambiar `SECRET_KEY` en producción
-- 🔒 Usar HTTPS en producción
-- 🌐 Configurar CORS específicamente (no usar `allow_origins=["*"]`)
-- ⏱️ Implementar rate limiting
-- ✅ Validar y sanitizar todas las entradas
-- 🛡️ Implementar autenticación JWT para endpoints sensibles
+- No versionar el archivo `.env`
+- Cambiar `SECRET_KEY` en producción
+- Usar HTTPS en producción
+- Configurar CORS específicamente (no usar `allow_origins=["*"]`)
+- Implementar rate limiting
+- Validar y sanitizar todas las entradas
+- Implementar autenticación JWT para endpoints sensibles
 
-## 📝 Variables de Entorno
+## Variables de Entorno
 
 | Variable | Descripción | Default | Requerido |
 |----------|-------------|---------|-----------|
-| `DB_HOST` | Host de MySQL | localhost | ✅ |
-| `DB_PORT` | Puerto de MySQL | 3306 | ✅ |
-| `DB_USER` | Usuario de BD | root | ✅ |
-| `DB_PASSWORD` | Contraseña de BD | - | ✅ |
-| `DB_NAME` | Nombre de la BD | BancoDB | ✅ |
-| `API_HOST` | Host de la API | 0.0.0.0 | ❌ |
-| `API_PORT` | Puerto de la API | 8000 | ❌ |
-| `DEBUG` | Modo debug | True | ❌ |
-| `SECRET_KEY` | Clave para JWT | - | ✅ |
+| `DB_HOST` | Host de MySQL | localhost | Si |
+| `DB_PORT` | Puerto de MySQL | 3306 | Si |
+| `DB_USER` | Usuario de BD | root | Si |
+| `DB_PASSWORD` | Contraseña de BD | - | Si |
+| `DB_NAME` | Nombre de la BD | bancodb | Si |
+| `API_HOST` | Host donde corre la API | 0.0.0.0 | No |
+| `API_PORT` | Puerto de la API | 8000 | No |
+| `DEBUG` | Modo desarrollo (logs detallados) | True | No |
+| `SECRET_KEY` | Clave para encriptación JWT | - | Si |
+| `ALGORITHM` | Algoritmo de encriptación | HS256 | No |
+| `ACCESS_TOKEN_EXPIRE_MINUTES` | Expiración de tokens | 30 | No |
 
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
 
-## 👥 Autores
+## Autores
 
 - **Cristian Arboleda** - *Desarrollo inicial* - [cristiancalderon82192-hue](https://github.com/cristiancalderon82192-hue)
 
-## 🙏 Agradecimientos
+## Agradecimientos
 
 - FastAPI Documentation
 - SQLAlchemy Documentation
