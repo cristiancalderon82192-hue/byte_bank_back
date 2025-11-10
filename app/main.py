@@ -75,9 +75,21 @@ app.include_router(
 )
 
 app.include_router(
+    tipos.router,
+    prefix="/api/tipos",
+    tags=["Catálogos"]
+)
+
+app.include_router(
     cuentahabientes.router,
     prefix="/api/cuentahabientes",
     tags=["Cuentahabientes"]
+)
+
+app.include_router(
+    sucursales.router,
+    prefix="/api/sucursales",
+    tags=["Sucursales"]
 )
 
 app.include_router(
@@ -86,10 +98,23 @@ app.include_router(
     tags=["Cuentas"]
 )
 
-# Aquí se agregarán más routers en el futuro
-# app.include_router(sucursales.router, prefix="/api/sucursales", tags=["Sucursales"])
-# app.include_router(movimientos.router, prefix="/api/movimientos", tags=["Movimientos"])
-# app.include_router(prestamos.router, prefix="/api/prestamos", tags=["Préstamos"])
+app.include_router(
+    titulares.router,
+    prefix="/api/titulares",
+    tags=["Titulares"]
+)
+
+app.include_router(
+    movimientos.router,
+    prefix="/api/movimientos",
+    tags=["Movimientos"]
+)
+
+app.include_router(
+    prestamos.router,
+    prefix="/api/prestamos",
+    tags=["Préstamos"]
+)
 
 if __name__ == "__main__":
     import uvicorn

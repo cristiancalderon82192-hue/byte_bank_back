@@ -98,7 +98,7 @@ def verify_database():
         print("Verifica:")
         print("   1. MySQL está corriendo")
         print("   2. Las credenciales en .env son correctas")
-        print("   3. La base de datos 'BancoDB' existe")
+        print("   3. La base de datos 'bancodb' existe")
         return False
     
     return True

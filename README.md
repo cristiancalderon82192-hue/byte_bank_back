@@ -127,8 +127,13 @@ Ejecuta el archivo `database/schema.sql` que contiene la estructura completa:
 ```bash
 mysql -u root -p < database/schema.sql
 ```
+y Ejecuta el archivo `database/database_filling.sql` que pobla la base de datos:
 
-O desde MySQL Workbench/DBeaver, abre y ejecuta el archivo `database/schema.sql`
+```bash
+mysql -u root -p < database/database_filling.sql
+```
+
+O desde MySQL Workbench/DBeaver, abre y ejecuta los archivos `database/schema.sql` y `database/schema.sql`
 
 **Opción B: Crear solo la base de datos**
 
@@ -293,91 +298,93 @@ El servidor estará disponible en: `http://localhost:8000`
 
 ```
 byte_bank_back/
-
- app/                           # Aplicación principal
-    __init__.py
-    main.py                    # Punto de entrada FastAPI
-    database.py                # Configuración de BD
-   
-    models/                    # Modelos SQLAlchemy (Tablas)
-       __init__.py
-       ciudad.py
-       tipo_cuenta.py
-       tipo_documento.py
-       tipo_movimiento.py
-       tipo_sucursal.py
-       cuentahabiente.py
-       sucursal.py
-       cuenta.py
-       titular.py
-       movimiento.py
-       prestamo.py
-   
-    schemas/                   # Esquemas Pydantic (Validación)
-       __init__.py
-       ciudad.py
-       tipo_cuenta.py
-       tipo_documento.py
-       tipo_movimiento.py
-       tipo_sucursal.py
-       cuentahabiente.py
-       sucursal.py
-       cuenta.py
-       titular.py
-       movimiento.py
-       prestamo.py
-   
-    routers/                   # Endpoints REST (API)
-       __init__.py
-       ciudades.py
-       tipos.py              # Endpoints para tablas maestras
-       cuentahabientes.py
-       sucursales.py
-       cuentas.py
-       titulares.py
-       movimientos.py
-       prestamos.py
-   
-    crud/                      # Operaciones CRUD (Lógica de BD)
-       __init__.py
-       ciudad.py
-       tipo_cuenta.py
-       cuentahabiente.py
-       sucursal.py
-       cuenta.py
-       movimiento.py
-       prestamo.py
-   
-    utils/                     # Utilidades
-        __init__.py
-        security.py
-
- tests/                         # Pruebas unitarias
-    __init__.py
-    test_cuentahabientes.py
-    test_cuentas.py
-    test_movimientos.py
-    test_prestamos.py
-
- database/                      # Scripts SQL
-    schema.sql                # Esquema completo de BD
-
- alembic/                       # Migraciones (Opcional)
-    versions/                 # Versiones de migraciones
-    env.py                    # Configuración de Alembic
-    script.py.mako
-    README
-
- venv/                          # Entorno virtual Python
-
- .env                          # Variables de entorno (NO versionar)
- .gitignore                    # Archivos ignorados por Git
- requirements.txt              # Dependencias Python
- alembic.ini                   # Config Alembic (solo si se usa)
- init_db.py                    # Script para poblar BD con datos de prueba
- verify_db.py                  # Script para verificar BD existente
- test_schemas.py               # Script para verificar Schemas existentes
- README.md                     # Este archivo
+│
+├──app/                           # Aplicación principal
+│   ├── __init__.py
+│   ├── main.py                    # Punto de entrada FastAPI
+│   ├── database.py                # Configuración de BD
+│   │
+│   ├── models/                    # Modelos SQLAlchemy (Tablas)
+│   │   ├── __init__.py
+│   │   ├── ciudad.py
+│   │   ├── tipo_cuenta.py
+│   │   ├── tipo_documento.py
+│   │   ├── tipo_movimiento.py
+│   │   ├── tipo_sucursal.py
+│   │   ├── cuentahabiente.py
+│   │   ├── sucursal.py
+│   │   ├── cuenta.py
+│   │   ├── titular.py
+│   │   ├── movimiento.py
+│   │   └── prestamo.py
+│   │
+│   ├── schemas/                   # Esquemas Pydantic (Validación)
+│   │   ├── __init__.py
+│   │   ├── ciudad.py
+│   │   ├── tipo_cuenta.py
+│   │   ├── tipo_documento.py
+│   │   ├── tipo_movimiento.py
+│   │   ├── tipo_sucursal.py
+│   │   ├── cuentahabiente.py
+│   │   ├── sucursal.py
+│   │   ├── cuenta.py
+│   │   ├── titular.py
+│   │   ├── movimiento.py
+│   │   └── prestamo.py
+│   │
+│   ├── routers/                   # Endpoints REST (API)
+│   │   ├── __init__.py
+│   │   ├── ciudades.py
+│   │   ├── tipos.py              # Endpoints para tablas maestras
+│   │   ├── cuentahabientes.py
+│   │   ├── sucursales.py
+│   │   ├── cuentas.py
+│   │   ├── titulares.py
+│   │   ├── movimientos.py
+│   │   └── prestamos.py
+│   │
+│   ├── crud/                      # Operaciones CRUD (Lógica de BD)
+│   │   ├── __init__.py
+│   │   ├── ciudad.py
+│   │   ├── tipo_cuenta.py
+│   │   ├── cuentahabiente.py
+│   │   ├── sucursal.py
+│   │   ├── cuenta.py
+│   │   ├── movimiento.py
+│   │   └── prestamo.py
+│   │
+│   └── utils/                     # Utilidades
+│       ├── __init__.py
+│       └── security.py
+│
+├── tests/                         # Pruebas unitarias
+│   ├── __init__.py
+│   ├── test_cuentahabientes.py
+│   ├── test_cuentas.py
+│   ├── test_movimientos.py
+│   └── test_prestamos.py
+│
+├── database/                      # Scripts SQL
+│   ├── schema.sql                 # Esquema completo de BD
+│   └── database_filling.sql        # Poblar la Base de Datos
+│
+│
+├── alembic/                       # Migraciones (Opcional)
+│   ├── versions/                 # Versiones de migraciones
+│   ├── env.py                    # Configuración de Alembic
+│   ├── script.py.mako
+│   └── README
+│
+├── venv/                          # Entorno virtual Python
+│
+├── .env                          # Variables de entorno (NO versionar)
+├── .gitignore                    # Archivos ignorados por Git
+├── requirements.txt              # Dependencias Python
+├── alembic.ini                   # Config Alembic (solo si se usa)
+├── init_db.py                    # Script para poblar BD con datos de prueba
+├── verify_db.py                  # Script para verificar BD existente
+├── test_schemas.py               # Script para verificar Schemas existentes
+└── README.md                     # Este archivo
 ```
 
 ## Endpoints
@@ -591,6 +598,67 @@ La API puede desplegarse en:
 | `ALGORITHM` | Algoritmo de encriptación | HS256 | No |
 | `ACCESS_TOKEN_EXPIRE_MINUTES` | Expiración de tokens | 30 | No |
 
+## Preguntas Frecuentes (FAQ)
+
+### ¿Necesito usar Alembic?
+
+**No es obligatorio**. Alembic es útil para:
+- Gestionar cambios en la estructura de BD en equipo
+- Mantener historial de migraciones
+- Revertir cambios fácilmente
+
+Si ya tienes la BD creada con el script SQL, puedes trabajar directamente sin Alembic.
+
+### ¿Cómo verifico que todo funciona?
+
+```bash
+# 1. Verificar base de datos
+python verify_db.py
+
+# 2. Iniciar API
+uvicorn app.main:app --reload
+
+# 3. Visitar http://localhost:8000/docs
+```
+
+### ¿Qué hago si la BD ya tiene datos?
+
+Si tu base de datos ya está poblada:
+1. **NO ejecutes** `init_db.py` (sobrescribirá datos)
+2. **Ejecuta** `verify_db.py` para verificar compatibilidad
+3. Inicia la API directamente con `uvicorn`
+
+### ¿Cómo agrego datos de prueba?
+
+```bash
+# Solo si la BD está vacía
+python init_db.py
+```
+
+### ¿Dónde están los endpoints?
+
+Visita la documentación interactiva en:
+- **Swagger**: http://localhost:8000/docs
+- **ReDoc**: http://localhost:8000/redoc
+
+### Error: "No module named 'app'"
+
+Asegúrate de:
+1. Estar en la raíz del proyecto (donde está la carpeta `app/`)
+2. Tener el entorno virtual activado
+3. Haber instalado las dependencias: `pip install -r requirements.txt`
+
+### Error de conexión a MySQL
+
+Verifica en `.env`:
+1. Credenciales correctas (usuario, password)
+2. MySQL está corriendo
+3. La base de datos `BancoDB` existe
+
+```bash
+# Verificar conexión
+python verify_db.py
+```
 
 ## Licencia
 
