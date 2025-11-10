@@ -50,17 +50,17 @@ API REST completa para gestión de sistema bancario construida con FastAPI, SQLA
 ### Diagrama de Relaciones
 
 ```
-ciudad → cuentahabiente
-         → sucursal
+ciudad ──┬─→ cuentahabiente
+         └─→ sucursal
          
-tipodocumento → cuentahabiente
-tiposucursal → sucursal
-tipocuenta → cuenta
-tipomovimiento → movimiento
+tipodocumento ─→ cuentahabiente
+tiposucursal ─→ sucursal
+tipocuenta ─→ cuenta
+tipomovimiento ─→ movimiento
 
-cuentahabiente ←→ titular ←→ cuenta
-                                  
-                        
+cuentahabiente ←─→ titular ←─→ cuenta
+                                  │
+                        ┌─────────┼─────────┐
                         ↓         ↓         ↓
                    movimiento  prestamo  sucursal
 ```
