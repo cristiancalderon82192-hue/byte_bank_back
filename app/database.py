@@ -8,11 +8,20 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Construir URL de conexión
-DATABASE_URL = (
-    f"mysql+pymysql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}"
-    f"@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
-    f"?charset=utf8mb4"
-)
+db_password = os.getenv('DB_PASSWORD', '')
+if db_password:
+    DATABASE_URL = (
+        f"mysql+pymysql://{os.getenv('DB_USER')}:{db_password}"
+        f"@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
+        f"?charset=utf8mb4"
+    )
+else:
+    # Sin contraseña
+    DATABASE_URL = (
+        f"mysql+pymysql://{os.getenv('DB_USER')}"
+        f"@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
+        f"?charset=utf8mb4"
+    )
 
 # Crear engine de SQLAlchemy
 engine = create_engine(

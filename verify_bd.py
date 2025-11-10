@@ -5,7 +5,7 @@ es compatible con los modelos SQLAlchemy
 
 from app.database import SessionLocal, engine
 from app.models import *
-from sqlalchemy import inspect
+from sqlalchemy import inspect, text
 
 
 def verify_database():
@@ -17,7 +17,8 @@ def verify_database():
         db = SessionLocal()
         
         # Verificar conexión
-        db.execute("SELECT 1")
+        from sqlalchemy import text
+        db.execute(text("SELECT 1"))
         print("✅ Conexión exitosa a la base de datos\n")
         
         # Obtener inspector
@@ -48,7 +49,8 @@ def verify_database():
         for table in expected_tables:
             if table in existing_tables:
                 # Contar registros
-                result = db.execute(f"SELECT COUNT(*) FROM {table}")
+                from sqlalchemy import text
+                result = db.execute(text(f"SELECT COUNT(*) FROM {table}"))
                 count = result.scalar()
                 print(f"  ✅ {table:<20} - {count} registros")
             else:
