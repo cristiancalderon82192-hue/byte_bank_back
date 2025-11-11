@@ -1,9 +1,16 @@
-alembic
-fastapi
-httpx
-pydantic[dotenv]
-pymysql
-pytest
-python-dotenv
-sqlalchemy
-uvicorn
+# Core Framework
+fastapi==0.121.1
+uvicorn==0.38.0
+
+# Database
+sqlalchemy==2.0.44
+pymysql==1.1.2
+alembic==1.17.1
+
+# Validation & Configuration
+pydantic==2.12.4
+python-dotenv==1.2.1
+
+# Testing
+pytest==9.0.0
+httpx==0.28.1
