@@ -46,6 +46,10 @@ class CuentahabienteResponse(BaseModel):
     IdCiudad: int
     # NO devolver la clave en las respuestas por seguridad
     
+    # Campos anidados con información relacionada
+    NombreCiudad: Optional[str] = None
+    TipoDocumentoNombre: Optional[str] = None
+    
     class Config:
         from_attributes = True
         json_schema_extra = {
@@ -56,6 +60,8 @@ class CuentahabienteResponse(BaseModel):
                 "Documento": "1234567890",
                 "Direccion": "Calle 45 # 23-12",
                 "Telefono": "3001234567",
-                "IdCiudad": 1
+                "IdCiudad": 1,
+                "NombreCiudad": "Bogotá",
+                "TipoDocumentoNombre": "Cédula de Ciudadanía"
             }
         }

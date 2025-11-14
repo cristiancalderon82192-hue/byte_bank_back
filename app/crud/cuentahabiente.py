@@ -1,22 +1,33 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from app.models.cuentahabiente import Cuentahabiente
+from app.models.ciudad import Ciudad
+from app.models.tipo_documento import TipoDocumento
 from app.schemas.cuentahabiente import CuentahabienteCreate, CuentahabienteUpdate
 from typing import List, Optional
 
 
 def get_cuentahabiente(db: Session, cuentahabiente_id: int) -> Optional[Cuentahabiente]:
-    """Obtener un cuentahabiente por ID"""
-    return db.query(Cuentahabiente).filter(Cuentahabiente.IdCuentahabiente == cuentahabiente_id).first()
+    """Obtener un cuentahabiente por ID con información relacionada"""
+    return db.query(Cuentahabiente).options(
+        joinedload(Cuentahabiente.ciudad),
+        joinedload(Cuentahabiente.tipo_documento)
+    ).filter(Cuentahabiente.IdCuentahabiente == cuentahabiente_id).first()
 
 
 def get_cuentahabiente_by_documento(db: Session, documento: str) -> Optional[Cuentahabiente]:
-    """Obtener un cuentahabiente por número de documento"""
-    return db.query(Cuentahabiente).filter(Cuentahabiente.Documento == documento).first()
+    """Obtener un cuentahabiente por número de documento con información relacionada"""
+    return db.query(Cuentahabiente).options(
+        joinedload(Cuentahabiente.ciudad),
+        joinedload(Cuentahabiente.tipo_documento)
+    ).filter(Cuentahabiente.Documento == documento).first()
 
 
 def get_cuentahabientes(db: Session, skip: int = 0, limit: int = 100) -> List[Cuentahabiente]:
-    """Obtener lista de cuentahabientes con paginación"""
-    return db.query(Cuentahabiente).offset(skip).limit(limit).all()
+    """Obtener lista de cuentahabientes con paginación e información relacionada"""
+    return db.query(Cuentahabiente).options(
+        joinedload(Cuentahabiente.ciudad),
+        joinedload(Cuentahabiente.tipo_documento)
+    ).offset(skip).limit(limit).all()
 
 
 def create_cuentahabiente(db: Session, cuentahabiente: CuentahabienteCreate) -> Cuentahabiente:

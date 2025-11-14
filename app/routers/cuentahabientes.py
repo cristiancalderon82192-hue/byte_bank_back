@@ -15,9 +15,26 @@ def listar_cuentahabientes(
     limit: int = 100,
     db: Session = Depends(get_db)
 ):
-    """Obtener lista de todos los cuentahabientes"""
+    """Obtener lista de todos los cuentahabientes con información relacionada"""
     cuentahabientes = crud.get_cuentahabientes(db, skip=skip, limit=limit)
-    return cuentahabientes
+    
+    # Mapear los datos relacionados al response
+    result = []
+    for ch in cuentahabientes:
+        ch_dict = {
+            "IdCuentahabiente": ch.IdCuentahabiente,
+            "Nombre": ch.Nombre,
+            "IdTipoDocumento": ch.IdTipoDocumento,
+            "Documento": ch.Documento,
+            "Direccion": ch.Direccion,
+            "Telefono": ch.Telefono,
+            "IdCiudad": ch.IdCiudad,
+            "NombreCiudad": ch.ciudad.Ciudad if ch.ciudad else None,
+            "TipoDocumentoNombre": ch.tipo_documento.TipoDocumento if ch.tipo_documento else None
+        }
+        result.append(ch_dict)
+    
+    return result
 
 
 @router.get("/{cuentahabiente_id}", response_model=CuentahabienteResponse)
@@ -25,14 +42,25 @@ def obtener_cuentahabiente(
     cuentahabiente_id: int,
     db: Session = Depends(get_db)
 ):
-    """Obtener un cuentahabiente por ID"""
+    """Obtener un cuentahabiente por ID con información relacionada"""
     cuentahabiente = crud.get_cuentahabiente(db, cuentahabiente_id=cuentahabiente_id)
     if cuentahabiente is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Cuentahabiente con ID {cuentahabiente_id} no encontrado"
         )
-    return cuentahabiente
+    
+    return {
+        "IdCuentahabiente": cuentahabiente.IdCuentahabiente,
+        "Nombre": cuentahabiente.Nombre,
+        "IdTipoDocumento": cuentahabiente.IdTipoDocumento,
+        "Documento": cuentahabiente.Documento,
+        "Direccion": cuentahabiente.Direccion,
+        "Telefono": cuentahabiente.Telefono,
+        "IdCiudad": cuentahabiente.IdCiudad,
+        "NombreCiudad": cuentahabiente.ciudad.Ciudad if cuentahabiente.ciudad else None,
+        "TipoDocumentoNombre": cuentahabiente.tipo_documento.TipoDocumento if cuentahabiente.tipo_documento else None
+    }
 
 
 @router.get("/documento/{documento}", response_model=CuentahabienteResponse)
@@ -40,14 +68,25 @@ def obtener_cuentahabiente_por_documento(
     documento: str,
     db: Session = Depends(get_db)
 ):
-    """Buscar cuentahabiente por número de documento"""
+    """Buscar cuentahabiente por número de documento con información relacionada"""
     cuentahabiente = crud.get_cuentahabiente_by_documento(db, documento=documento)
     if cuentahabiente is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Cuentahabiente con documento {documento} no encontrado"
         )
-    return cuentahabiente
+    
+    return {
+        "IdCuentahabiente": cuentahabiente.IdCuentahabiente,
+        "Nombre": cuentahabiente.Nombre,
+        "IdTipoDocumento": cuentahabiente.IdTipoDocumento,
+        "Documento": cuentahabiente.Documento,
+        "Direccion": cuentahabiente.Direccion,
+        "Telefono": cuentahabiente.Telefono,
+        "IdCiudad": cuentahabiente.IdCiudad,
+        "NombreCiudad": cuentahabiente.ciudad.Ciudad if cuentahabiente.ciudad else None,
+        "TipoDocumentoNombre": cuentahabiente.tipo_documento.TipoDocumento if cuentahabiente.tipo_documento else None
+    }
 
 
 @router.post("/", response_model=CuentahabienteResponse, status_code=status.HTTP_201_CREATED)
