@@ -20,12 +20,11 @@ app = FastAPI(
 )
 
 # Configurar CORS para Blazor
-
 origins = [
     "http://localhost:5161",
     "http://localhost:5000",
     "http://localhost:5173",
-    # o "*" para permitir todos (no recomendado en producción)
+    "*", # "*" para permitir todos (no recomendado en producción)
 ]
 app.add_middleware(
     CORSMiddleware,
