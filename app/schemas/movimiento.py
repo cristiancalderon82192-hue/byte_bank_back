@@ -26,8 +26,14 @@ class MovimientoUpdate(BaseModel):
     # Los demás campos no deberían modificarse después de crear el movimiento
 
 
-class MovimientoResponse(MovimientoBase):
+class MovimientoResponse(BaseModel):
     IdMovimiento: int = Field(..., description="ID único del movimiento")
+    IdCuenta: Optional[int] = Field(None, description="ID de la cuenta")
+    IdSucursal: Optional[int] = Field(None, description="ID de la sucursal")
+    Fecha: Optional[date] = Field(None, description="Fecha del movimiento")
+    Valor: Optional[Decimal] = Field(None, description="Valor del movimiento (positivo o negativo)")
+    IdTipoMovimiento: Optional[int] = Field(None, description="ID del tipo de movimiento")
+    Descripcion: Optional[str] = Field(None, max_length=200, description="Descripción del movimiento")
     
     class Config:
         from_attributes = True
