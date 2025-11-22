@@ -138,9 +138,9 @@ O desde MySQL Workbench/DBeaver, abre y ejecuta los archivos `database/schema.sq
 **Opción B: Crear solo la base de datos**
 
 ```sql
-DROP DATABASE IF EXISTS BancoDB;
-CREATE DATABASE BancoDB;
-USE BancoDB;
+DROP DATABASE IF EXISTS bancodb;
+CREATE DATABASE bancodb;
+USE bancodb;
 ```
 
 ### 2. Verificar la base de datos
@@ -403,38 +403,38 @@ byte_bank_back/
 #### Tipos de Cuenta
 | Método | Endpoint | Descripción |
 |--------|----------|-------------|
-| GET | `/api/tipos-cuenta` | Listar tipos de cuenta |
-| GET | `/api/tipos-cuenta/{id}` | Obtener tipo por ID |
-| POST | `/api/tipos-cuenta` | Crear tipo de cuenta |
-| PUT | `/api/tipos-cuenta/{id}` | Actualizar tipo |
-| DELETE | `/api/tipos-cuenta/{id}` | Eliminar tipo |
+| GET | `/api/tipos/cuenta` | Listar tipos de cuenta |
+| GET | `/api/tipos/cuenta/{id}` | Obtener tipo por ID |
+| POST | `/api/tipos/cuenta` | Crear tipo de cuenta |
+| PUT | `/api/tipos/cuenta/{id}` | Actualizar tipo |
+| DELETE | `/api/tipos/cuenta/{id}` | Eliminar tipo |
 
 #### Tipos de Documento
 | Método | Endpoint | Descripción |
 |--------|----------|-------------|
-| GET | `/api/tipos-documento` | Listar tipos de documento |
-| GET | `/api/tipos-documento/{id}` | Obtener tipo por ID |
-| POST | `/api/tipos-documento` | Crear tipo de documento |
-| PUT | `/api/tipos-documento/{id}` | Actualizar tipo |
-| DELETE | `/api/tipos-documento/{id}` | Eliminar tipo |
+| GET | `/api/tipos/documento` | Listar tipos de documento |
+| GET | `/api/tipos/documento/{id}` | Obtener tipo por ID |
+| POST | `/api/tipos/documento` | Crear tipo de documento |
+| PUT | `/api/tipos/documento/{id}` | Actualizar tipo |
+| DELETE | `/api/tipos/documento/{id}` | Eliminar tipo |
 
 #### Tipos de Movimiento
 | Método | Endpoint | Descripción |
 |--------|----------|-------------|
-| GET | `/api/tipos-movimiento` | Listar tipos de movimiento |
-| GET | `/api/tipos-movimiento/{id}` | Obtener tipo por ID |
-| POST | `/api/tipos-movimiento` | Crear tipo de movimiento |
-| PUT | `/api/tipos-movimiento/{id}` | Actualizar tipo |
-| DELETE | `/api/tipos-movimiento/{id}` | Eliminar tipo |
+| GET | `/api/tipos/movimiento` | Listar tipos de movimiento |
+| GET | `/api/tipos/movimiento/{id}` | Obtener tipo por ID |
+| POST | `/api/tipos/movimiento` | Crear tipo de movimiento |
+| PUT | `/api/tipos/movimiento/{id}` | Actualizar tipo |
+| DELETE | `/api/tipos/movimiento/{id}` | Eliminar tipo |
 
 #### Tipos de Sucursal
 | Método | Endpoint | Descripción |
 |--------|----------|-------------|
-| GET | `/api/tipos-sucursal` | Listar tipos de sucursal |
-| GET | `/api/tipos-sucursal/{id}` | Obtener tipo por ID |
-| POST | `/api/tipos-sucursal` | Crear tipo de sucursal |
-| PUT | `/api/tipos-sucursal/{id}` | Actualizar tipo |
-| DELETE | `/api/tipos-sucursal/{id}` | Eliminar tipo |
+| GET | `/api/tipos/sucursal` | Listar tipos de sucursal |
+| GET | `/api/tipos/sucursal/{id}` | Obtener tipo por ID |
+| POST | `/api/tipos/sucursal` | Crear tipo de sucursal |
+| PUT | `/api/tipos/sucursal/{id}` | Actualizar tipo |
+| DELETE | `/api/tipos/sucursal/{id}` | Eliminar tipo |
 
 ### Cuentahabientes
 
@@ -653,20 +653,15 @@ Asegúrate de:
 Verifica en `.env`:
 1. Credenciales correctas (usuario, password)
 2. MySQL está corriendo
-3. La base de datos `BancoDB` existe
+3. La base de datos `bancodb` existe
 
 ```bash
 # Verificar conexión
 python verify_db.py
 ```
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
-
 ## Autores
 
-- **Cristian Arboleda** - *Desarrollo inicial* - [cristiancalderon82192-hue](https://github.com/cristiancalderon82192-hue)
+- **Cristian Arboleda**
 
 ## Agradecimientos
 
