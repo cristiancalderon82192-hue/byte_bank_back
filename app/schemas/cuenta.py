@@ -25,8 +25,8 @@ class CuentaCreate(BaseModel):
     
     @validator('Numero')
     def validate_numero(cls, v):
-        if not v.isdigit():
-            raise ValueError('El número de cuenta solo puede contener dígitos')
+        if not v.isalnum():
+            raise ValueError('El número de cuenta solo puede contener dígitos con el prefijo CU')
         return v
 
 
@@ -61,8 +61,8 @@ class CuentaCreate(BaseModel):
     
     @validator('Numero')
     def validate_numero(cls, v):
-        if not v.isdigit():
-            raise ValueError('El número de cuenta solo puede contener dígitos')
+        if not v.isalnum():
+            raise ValueError('El número de cuenta solo puede contener dígitos con el prefijo CU')
         return v
 
 
